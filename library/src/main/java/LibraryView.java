@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -18,7 +19,10 @@ public class LibraryView extends JPanel {
     Application container;
     JButton borrowButton = new JButton("Borrow");
     JButton returnButton = new JButton("Return");
-
+    JButton logoutButton = new JButton("Logout");
+    JLabel labelAvailable;
+    JLabel labelCurrent;
+    JLabel labelStudent;
 
     LibraryView(Application application) throws IOException {
         container = application;
@@ -76,6 +80,29 @@ public class LibraryView extends JPanel {
             }
         });
 
+        logoutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    handleLogout();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+
+            }
+        });
+
+        labelAvailable = new JLabel("Available books");
+        labelAvailable.setFont(new Font("Tahoma", Font.BOLD, 12));
+        add(labelAvailable);
+
+
+        labelCurrent = new JLabel("Owned books");
+        labelCurrent.setFont(new Font("Tahoma", Font.BOLD, 12));
+        add(labelCurrent);
+
+
+
+
         add(scrollableAvailableWrapper);
         add(scrollableBorrowedWrapper);
         add(borrowButton);
@@ -105,6 +132,16 @@ public class LibraryView extends JPanel {
         container.frame.repaint();
     }
 
+    private void handleLogout() {
+        container.cl.show(container.panelCont, "1");
+        container.student.setIndex(null);
+        container.repository.setCurrentBooks(null);
+        container.repository.setAvailableBooks(null);
+        container.frame.setSize(new Dimension(200   , 200 ));
+        container.loginPanel.txtIndex.setText("");
+        container.loginPanel.txtPassword.setText("");
+        container.frame.repaint();
+    }
     private void handleBorrowClick() throws Exception {
         container.http.rent(borrowId);
         availableModel.clear();
@@ -135,12 +172,21 @@ public class LibraryView extends JPanel {
         container.frame.repaint();
     }
     public void init() throws IOException {
-        scrollableAvailableWrapper.setBounds(10, 10, 225, 300);
-        scrollableBorrowedWrapper.setBounds(250, 10, 225, 300);
-        borrowButton.setBounds(10, 320, 225, 30);
-        returnButton.setBounds(250, 320, 225, 30);
+        setLayout(null);
+        scrollableAvailableWrapper.setBounds(10, 70, 225, 300);
+        scrollableBorrowedWrapper.setBounds(250, 70, 225, 300);
+        borrowButton.setBounds(10, 375, 225, 30);
+        logoutButton.setBounds(395, 10, 80, 35);
+        returnButton.setBounds(250, 375, 225, 30);
+        labelAvailable.setBounds(10, 40, 225, 20);
+        labelCurrent.setBounds(250, 40, 225, 20);
         container.repository.fetchAvailableBooks();
         container.repository.fetchCurrentBooks();
+        labelStudent = new JLabel("Current student index: " + container.student.getIndex());
+        labelStudent.setFont(new Font("Tahoma", Font.BOLD, 12));
+        labelStudent.setBounds(10, 5, 225, 20);
+        add(labelStudent);
+        add(logoutButton);
         currentModel.clear();
         String[] currentBooks = container.repository.getCurrentBookDisplays();
         int repositoryCurrentBooksCount = 0;

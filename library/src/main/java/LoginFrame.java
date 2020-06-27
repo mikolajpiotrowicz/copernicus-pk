@@ -1,16 +1,12 @@
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 
 public class LoginFrame extends JPanel {
-    private JTextField txtIndex;
-    private JTextField txtPassword;
+    public JTextField txtIndex;
+    public JTextField txtPassword;
 
     public LoginFrame(final Application application) {
         setBounds(100, 100, 200, 225);
@@ -24,8 +20,6 @@ public class LoginFrame extends JPanel {
         txtIndex.setBounds(10, 30, 162, 20);
         txtIndex.setColumns(10);
         add(txtIndex);
-
-
 
         JLabel lblPassword = new JLabel("Password");
         lblPassword.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -50,7 +44,7 @@ public class LoginFrame extends JPanel {
                     }
 
                     application.http.login(fname, fpassword);
-                    application.frame.setSize(new Dimension(500, 400 ));
+                    application.frame.setSize(new Dimension(500, 460 ));
                     application.libraryView.setLayout(null);
                     application.libraryView.init();
                     application.cl.show(application.panelCont, "3");
