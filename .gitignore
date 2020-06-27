@@ -1,0 +1,9 @@
+admin_pane/.idea/
+admin_pane/dist/
+admin_pane/node_modules/
+admin_pane/src/**/*.jsx
+admin_pane/tests/__coverage__/
+admin_pane/tests/**/*.jsx
+
+library/.idea/
+bookservice/.idea/

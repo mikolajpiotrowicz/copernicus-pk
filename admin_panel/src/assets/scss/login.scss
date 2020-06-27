@@ -1,0 +1,29 @@
+.login {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .login__form {
+    width: 350px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    padding: 25px;
+
+    .login__submit-row {
+      width: 100%;
+      margin-bottom: 0;
+
+      .ant-form-item-control-input-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+    .ant-input-affix-wrapper {
+      max-width: 100%;
+    }
+  }
+}

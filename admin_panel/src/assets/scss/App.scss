@@ -1,0 +1,36 @@
+@import "sidebar";
+@import "header";
+@import "login";
+
+body, #root {
+  min-height: 100vh;
+}
+
+
+.screen {
+  position: relative;
+  margin: 100px 50px 50px 50px;
+}
+
+.fw {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+.ml15 {
+  margin-left: 15px;
+}
+
+.form-wrapper {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: rgba(200, 200, 200, 0.2);
+  padding: 30px;
+}
+.action-wrapper {
+  display: flex;
+  max-width: 200px;
+}

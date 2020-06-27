@@ -1,0 +1,21 @@
+.top-header {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 9px 31px;
+  height: unset;
+  background-color: #ffffff;
+
+
+  &__menu-item {
+    margin-bottom: 0;
+  }
+
+  button {
+    margin: 0 15px 0 20px;
+  }
+
+  .wrapper {
+    line-height: 30px;
+  }
+}
